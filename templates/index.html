@@ -1,0 +1,28 @@
+<html>
+    <head>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        <script type="text/javascript">
+            post = function() {
+                $.post("/post", { command: $('#id_command').val() })
+                    .done(function(data) {
+                        alert('daihdaiush')
+                    });
+            };
+        </script>
+
+        <style type="text/css">
+            #id_command {
+                width: 500px;
+            }
+        </style>
+    </head>
+
+    <body>
+        <input id="id_command" name="command" value="almoco hoje -33 nubank -l restaurante xyz -d pato assado no molho de laranja"/>
+        <input type="button" value="Enviar" onclick="post()"/>
+        <div>
+        -d descricao detalhada
+        -l local
+        </div>
+    </body>
+</html>
