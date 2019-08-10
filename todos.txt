@@ -1,0 +1,5 @@
+- [ ] suporte básico a entrada de operações
+- [ ] parser das informações
+- [ ] suporte básico a exibição das informações já existentes
+- [ ] tratamento de erros.
+- [ ] suporte a novos atributos

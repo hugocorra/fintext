@@ -3,11 +3,40 @@
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
         <script type="text/javascript">
             post = function() {
-                $.post("/post", { command: $('#id_command').val() })
-                    .done(function(data) {
-                        alert('daihdaiush')
-                    });
+                $.ajax({
+                    url: '/post',
+                    dataType: 'json',
+                    type: 'post',
+                    contentType: 'application/json',
+                    data: JSON.stringify({command: $('#id_command').val()}),
+                    processData: false,
+                    success: function(data, textStatus, jQxhr){
+                        console.log(data)
+                        alert('sucesso')
+                    },
+                    error: function(jqXhr, textStatus, errorThrown){
+                        alert('ops...')
+                    }
+                });
             };
+
+            retrieve = function() {
+                $.ajax({
+                    url: '/retrieve',
+                    dataType: 'json',
+                    type: 'get',
+                    contentType: 'application/json',
+                    processData: false,
+                    success: function(data, textStatus, jQxhr){
+                        console.log(data);
+                        $('#contents').html(JSON.stringify(data));
+                    },
+                    error: function(jqXhr, textStatus, errorThrown){
+                        alert('ops...')
+                    }
+                });
+            }
+
         </script>
 
         <style type="text/css">
@@ -18,11 +47,17 @@
     </head>
 
     <body>
+        <button onclick="retrieve()">Retrieve</button>
+
         <input id="id_command" name="command" value="almoco hoje -33 nubank -l restaurante xyz -d pato assado no molho de laranja"/>
         <input type="button" value="Enviar" onclick="post()"/>
         <div>
         -d descricao detalhada
         -l local
+        </div>
+
+        <div id="contents" style="background:#F00">
+
         </div>
     </body>
 </html>
